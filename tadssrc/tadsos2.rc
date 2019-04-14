@@ -1,0 +1,303 @@
+/*
+** TADSOS2.RC 
+*/
+
+#include <os2.h>
+#include "tadsos2.h"
+#include "os2io.h"
+
+ICON TADS2 tadsos2.ico
+
+MENU TADS2
+BEGIN
+    SUBMENU "~File", IDM_FILEMENU
+    BEGIN
+        MENUITEM "~Load .gam file\tCtrl+L", IDM_LOAD
+        MENUITEM SEPARATOR
+        MENUITEM "~Save game\tCtrl+S", IDM_SAVE
+        MENUITEM "~Restore game\tCtrl+R", IDM_RESTORE
+        MENUITEM SEPARATOR
+        MENUITEM "~Bind stand-alone game", IDM_BIND
+        MENUITEM "~Unbind TADS/2 from game data", IDM_UNBIND
+        MENUITEM SEPARATOR
+        MENUITEM "", IDM_RG1
+        MENUITEM "", IDM_RG2
+        MENUITEM "", IDM_RG3
+        MENUITEM "", IDM_RG4
+        MENUITEM "", IDM_RG5
+        MENUITEM "", IDM_RG6
+        MENUITEM "", IDM_RG7
+        MENUITEM "", IDM_RG8
+        MENUITEM "", IDM_RG9
+        MENUITEM "", IDM_RG10
+        MENUITEM "~Quit\tCtrl+Q", IDM_QUIT
+    END
+
+    SUBMENU "~Edit", IDM_EDITMENU
+    BEGIN
+        MENUITEM "~Undo\tAlt+Backspace", IDM_UNDO
+        MENUITEM SEPARATOR
+        MENUITEM "Cu~t\tShift+Del", IDM_CUT
+        MENUITEM "~Copy\tCtrl+Ins", IDM_COPY
+        MENUITEM "~Paste\tShift+Ins", IDM_PASTE
+        MENUITEM SEPARATOR
+        MENUITEM "~Find\tCtrl+F", IDM_FIND
+        MENUITEM "Find a~gain\tCtrl+G", IDM_FINDAGAIN
+    END
+
+    SUBMENU "~Options", IDM_OPTIONMENU
+    BEGIN
+        MENUITEM "~Story window settings", IDM_STORY_WINDOW
+        MENUITEM "~Interpreter settings", IDM_INTERPRETER
+        MENUITEM "~Program settings", IDM_PROGRAM
+        SUBMENU "Set ~font", IDM_SET_FONT
+        BEGIN
+            MENUITEM "Set ~main window font", IDM_SET_MAIN_FONT
+            MENUITEM "Set ~status window font", IDM_SET_STATUS_FONT
+        END
+        MENUITEM "Set ~colors", IDM_SET_COLORS
+        MENUITEM "Separated status ~bar", IDM_SEPARATED_STATUS, MIA_CHECKED
+    END
+
+	SUBMENU "~Macros", IDM_MACROMENU
+	BEGIN
+		MENUITEM "~Define macro", IDM_DEFINE_MACRO
+		MENUITEM SEPARATOR
+		MENUITEM "No macros defined", IDM_NO_MACROS, MIA_DISABLED
+		MENUITEM "Macro one\tF1", IDM_MACRO1
+		MENUITEM "Macro two\tF2", IDM_MACRO2
+		MENUITEM "Macro three\tF3", IDM_MACRO3
+		MENUITEM "Macro four\tF4", IDM_MACRO4
+		MENUITEM "Macro five\tF5", IDM_MACRO5
+		MENUITEM "Macro six\tF6", IDM_MACRO6
+		MENUITEM "Macro seven\tF7", IDM_MACRO7
+		MENUITEM "Macro eight\tF8", IDM_MACRO8
+		MENUITEM "Macro nine\tF9", IDM_MACRO9
+		MENUITEM "Macro ten\tF10", IDM_MACRO10
+		MENUITEM "Macro eleven\tF11", IDM_MACRO11
+		MENUITEM "Macro twelve\tF12", IDM_MACRO12
+	END
+
+    SUBMENU "~Help", IDM_HELPMENU
+    BEGIN
+        MENUITEM "About", IDM_ABOUT
+    END
+
+END
+
+ACCELTABLE TADS2
+BEGIN
+    VK_BACKSPACE, IDM_UNDO, AF_VIRTUALKEY | AF_ALT
+    VK_DELETE,  IDM_CUT,    AF_VIRTUALKEY | AF_SHIFT
+    VK_INSERT,  IDM_COPY,   AF_VIRTUALKEY | AF_CONTROL
+    VK_INSERT,  IDM_PASTE, AF_VIRTUALKEY | AF_SHIFT
+    "x", IDM_CUT, CONTROL
+    "X", IDM_CUT, CONTROL
+    "c", IDM_COPY, CONTROL
+    "C", IDM_COPY, CONTROL
+    "v", IDM_PASTE, CONTROL
+    "V", IDM_PASTE, CONTROL
+    "F", IDM_FIND, CONTROL
+    "f", IDM_FIND, CONTROL
+    "G", IDM_FINDAGAIN, CONTROL
+    "g", IDM_FINDAGAIN, CONTROL
+    "L", IDM_LOAD, CONTROL
+    "l", IDM_LOAD, CONTROL
+    "S", IDM_SAVE, CONTROL
+    "s", IDM_SAVE, CONTROL
+    "R", IDM_RESTORE, CONTROL
+    "r", IDM_RESTORE, CONTROL
+    "d", IDM_DEFINE_MACRO, CONTROL
+    "D", IDM_DEFINE_MACRO, CONTROL
+    "q", IDM_QUIT, CONTROL
+    "Q", IDM_QUIT, CONTROL
+END
+
+MENU POPUPMENU
+BEGIN
+    MENUITEM "~Undo\tAlt+Backspace", IDM_UNDO
+    MENUITEM SEPARATOR
+    MENUITEM "Cu~t\tShift+Del", IDM_CUT
+    MENUITEM "~Copy\tCtrl+Ins", IDM_COPY
+    MENUITEM "~Paste\tShift+Ins", IDM_PASTE
+    MENUITEM SEPARATOR
+    MENUITEM "~Find\tCtrl+F", IDM_FIND
+    MENUITEM "Find a~gain\tCtrl+G", IDM_FINDAGAIN
+END
+
+STRINGTABLE
+BEGIN
+	strix_RestoreGame	"TADS/2 Restore Game"
+	strix_SaveGameAs	"TADS/2 Save Game"
+	strix_OpenGame		"TADS/2 Open Game"
+	strix_WriteScript	"TADS/2 Write Script"
+	strix_BindGame		"TADS/2 Standalone Game"
+	strix_UnbindGame		"TADS/2 Unbound Executable"
+	strix_PrefsFileName	"tadsos2.ini"
+	strix_PrefsName	"Preferences"
+	strix_PrefsKeyName	"Main Structure"
+END
+
+DLGTEMPLATE DLG_FIND MOVEABLE DISCARDABLE
+BEGIN
+    DIALOG "Find", DLG_FIND, 132, 114, 226, 55, FS_NOBYTEALIGN | FS_DLGBORDER |
+                WS_CLIPSIBLINGS | WS_SAVEBITS | WS_VISIBLE, FCF_TITLEBAR |
+                FCF_SYSMENU
+    PRESPARAMS PP_USER, "10.System Proportional"
+    BEGIN
+        CONTROL "",                    IDD_FIND_TEXT, 7, 22, 156, 10,
+                                            WC_ENTRYFIELD, ES_MARGIN |
+                                            WS_TABSTOP | WS_VISIBLE
+                CTLDATA 8, 32, 0, 0
+        CONTROL "Find",                DID_OK, 180, 36, 38, 12, WC_BUTTON,
+                                            BS_PUSHBUTTON | BS_DEFAULT |
+                                            WS_GROUP | WS_TABSTOP | WS_VISIBLE
+        CONTROL "Cancel",              DID_CANCEL, 180, 20, 38, 12, WC_BUTTON,
+                                            BS_PUSHBUTTON | WS_TABSTOP |
+                                            WS_VISIBLE
+        CONTROL "Text to find:",       259, 6, 38, 55, 8, WC_STATIC, SS_TEXT |
+                                            WS_GROUP | WS_VISIBLE
+        CONTROL "~Case-sensitive search", IDD_CAREABOUTCASE, 7, 6, 106, 10,
+                                            WC_BUTTON, BS_AUTOCHECKBOX |
+                                            WS_TABSTOP | WS_VISIBLE
+        CONTROL "Search ~backwards",   IDD_SEARCHBACKWARDS, 114, 6, 91, 10,
+                                            WC_BUTTON, BS_AUTOCHECKBOX |
+                                            WS_TABSTOP | WS_VISIBLE
+    END
+END
+
+DLGTEMPLATE DLG_ABOUT MOVEABLE DISCARDABLE
+BEGIN
+    DIALOG "About TADS/2", DLG_ABOUT, 36, 70, 372, 139, FS_NOBYTEALIGN |
+                FS_DLGBORDER | WS_CLIPSIBLINGS | WS_SAVEBITS | WS_VISIBLE,
+                FCF_TITLEBAR | FCF_SYSMENU
+    PRESPARAMS PP_USER, "10.System Proportional"
+    BEGIN
+        CONTROL "OK",                  DID_OK, 167, 5, 38, 12, WC_BUTTON,
+                                            BS_PUSHBUTTON | BS_DEFAULT |
+                                            WS_GROUP | WS_TABSTOP | WS_VISIBLE
+        CONTROL "",                    IDD_MLE, 8, 25, 356, 107, WC_MLE,
+                                            MLS_BORDER | MLS_IGNORETAB |
+                                            MLS_READONLY | MLS_VSCROLL |
+                                            MLS_WORDWRAP | WS_TABSTOP |
+                                            WS_VISIBLE
+    END
+END
+
+DLGTEMPLATE DLG_OPTIONS MOVEABLE DISCARDABLE
+BEGIN
+    DIALOG "TADS/2 Options", DLG_OPTIONS, 83, 115, 185, 81, FS_NOBYTEALIGN |
+                FS_DLGBORDER | WS_CLIPSIBLINGS | WS_SAVEBITS | WS_VISIBLE,
+                FCF_TITLEBAR | FCF_SYSMENU
+    PRESPARAMS PP_USER, "10.System Proportional"
+    BEGIN
+        CONTROL "OK",                  DID_OK, 37, 5, 38, 12, WC_BUTTON,
+                                            BS_PUSHBUTTON | BS_DEFAULT |
+                                            WS_GROUP | WS_TABSTOP | WS_VISIBLE
+        CONTROL "Cancel",              DID_CANCEL, 111, 5, 38, 12, WC_BUTTON,
+                                            BS_PUSHBUTTON | WS_TABSTOP |
+                                            WS_VISIBLE
+        CONTROL "F~1 is a macro",      IDD_F1ISMACRO, 10, 61, 76, 10, WC_BUTTON,
+                                            BS_AUTOCHECKBOX | WS_TABSTOP |
+                                            WS_VISIBLE
+        CONTROL "F1~0 is a macro",     IDD_F10ISMACRO, 10, 43, 84, 10,
+                                            WC_BUTTON, BS_AUTOCHECKBOX |
+                                            WS_TABSTOP | WS_VISIBLE
+        CONTROL "Sticky ~paths",       IDD_STICKYPATHS, 100, 61, 69, 10,
+                                            WC_BUTTON, BS_AUTOCHECKBOX |
+                                            WS_TABSTOP | WS_VISIBLE
+        CONTROL "Sticky ~macros",      IDD_STICKYMACROS, 100, 43, 73, 10,
+                                            WC_BUTTON, BS_AUTOCHECKBOX |
+                                            WS_TABSTOP | WS_VISIBLE
+        CONTROL "~Close when ending a game", IDD_CLOSEONEND, 26, 25, 123, 10,
+                                            WC_BUTTON, BS_AUTOCHECKBOX | WS_TABSTOP |
+                                            WS_VISIBLE
+    END
+END
+
+DLGTEMPLATE DLG_STORYWINDOW MOVEABLE DISCARDABLE
+BEGIN
+    DIALOG "TADS/2 Story Window Options", DLG_STORYWINDOW, 110, 112, 211, 91,
+                FS_NOBYTEALIGN | FS_DLGBORDER | WS_CLIPSIBLINGS | WS_SAVEBITS |
+                WS_VISIBLE, FCF_TITLEBAR | FCF_SYSMENU
+    PRESPARAMS PP_USER, "10.System Proportional"
+    BEGIN
+        CONTROL "OK",                  DID_OK, 162, 55, 38, 12, WC_BUTTON,
+                                            BS_PUSHBUTTON | BS_DEFAULT |
+                                            WS_GROUP | WS_TABSTOP | WS_VISIBLE
+        CONTROL "Cancel",              DID_CANCEL, 162, 23, 38, 12, WC_BUTTON,
+                                            BS_PUSHBUTTON | WS_TABSTOP |
+                                            WS_VISIBLE
+        CONTROL "Left/right margins",  IDD_LRMARGINS, 16, 64, 43, 12,
+                                            WC_SPINBUTTON, SPBS_MASTER |
+                                            SPBS_JUSTRIGHT | SPBS_NUMERICONLY |
+                                            WS_TABSTOP | WS_VISIBLE
+                CTLDATA 24, 0, 256, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        CONTROL "Text",                IDD_TBMARGINS, 16, 41, 43, 12,
+                                            WC_SPINBUTTON, SPBS_MASTER |
+                                            SPBS_JUSTRIGHT | SPBS_NUMERICONLY |
+                                            WS_TABSTOP | WS_VISIBLE
+                CTLDATA 24, 0, 256, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        CONTROL "Left/right margins",  274, 66, 65, 77, 8, WC_STATIC, SS_TEXT |
+                                            DT_LEFT | DT_TOP | WS_GROUP |
+                                            WS_VISIBLE
+        CONTROL "Top/bottom margins",  275, 65, 43, 87, 8, WC_STATIC, SS_TEXT |
+                                            DT_LEFT | DT_TOP | WS_GROUP |
+                                            WS_VISIBLE
+        CONTROL "~Justify text",       IDD_JUSTIFYTEXT, 15, 25, 61, 10,
+                                            WC_BUTTON, BS_AUTOCHECKBOX |
+                                            WS_TABSTOP | WS_VISIBLE
+        CONTROL "~Two spaces after period", IDD_DOUBLESPACE, 15, 8, 115, 10,
+                                            WC_BUTTON, BS_AUTOCHECKBOX |
+                                            WS_TABSTOP | WS_VISIBLE
+        CONTROL "~Bold input",         IDD_BOLDINPUT, 90, 25, 55, 10, WC_BUTTON,
+                                            BS_AUTOCHECKBOX | WS_TABSTOP |
+                                            WS_VISIBLE
+    END
+END
+
+DLGTEMPLATE DLG_INTERPRETER MOVEABLE DISCARDABLE
+BEGIN
+    DIALOG "TADS/2 Interpreter Options", DLG_INTERPRETER, 70, 110, 248, 87,
+                FS_NOBYTEALIGN | FS_DLGBORDER | WS_CLIPSIBLINGS | WS_SAVEBITS |
+                WS_VISIBLE, FCF_TITLEBAR | FCF_SYSMENU
+    PRESPARAMS PP_USER, "10.System Proportional"
+    BEGIN
+        CONTROL "OK",                  DID_OK, 191, 58, 38, 12, WC_BUTTON,
+                                            BS_PUSHBUTTON | BS_DEFAULT |
+                                            WS_GROUP | WS_TABSTOP | WS_VISIBLE
+        CONTROL "Cancel",              DID_CANCEL, 191, 34, 38, 12, WC_BUTTON,
+                                            BS_PUSHBUTTON | WS_TABSTOP |
+                                            WS_VISIBLE
+        CONTROL "Command history length", IDD_HISTORYLENGTH, 16, 64, 43, 12,
+                                            WC_SPINBUTTON, SPBS_MASTER |
+                                            SPBS_JUSTRIGHT | SPBS_NUMERICONLY |
+                                            WS_TABSTOP | WS_VISIBLE
+                CTLDATA 24, 0, 256, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        CONTROL "Buffer size (characters)", IDD_BUFFERSIZE, 16, 46, 43, 12,
+                                            WC_SPINBUTTON, SPBS_MASTER |
+                                            SPBS_JUSTRIGHT | SPBS_NUMERICONLY |
+                                            WS_TABSTOP | WS_VISIBLE
+                CTLDATA 24, 0, 256, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        CONTROL "Buffer slack (character)", IDD_BUFFERSLACK, 16, 28, 43, 12,
+                                            WC_SPINBUTTON, SPBS_MASTER |
+                                            SPBS_JUSTRIGHT | SPBS_NUMERICONLY |
+                                            WS_TABSTOP | WS_VISIBLE
+                CTLDATA 24, 0, 256, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        CONTROL "Command history length", 284, 67, 65, 102, 8, WC_STATIC,
+                                            SS_TEXT | DT_LEFT | DT_TOP |
+                                            WS_GROUP | WS_VISIBLE
+        CONTROL "Buffer size (characters)", 285, 67, 48, 101, 8, WC_STATIC,
+                                            SS_TEXT | DT_LEFT | DT_TOP |
+                                            WS_GROUP | WS_VISIBLE
+        CONTROL "Buffer slack (characters)", 286, 67, 30, 104, 8, WC_STATIC,
+                                            SS_TEXT | DT_LEFT | DT_TOP |
+                                            WS_GROUP | WS_VISIBLE
+        CONTROL "~Pause while paging", IDD_PAGING, 16, 10, 94, 10, WC_BUTTON,
+                                            BS_AUTOCHECKBOX | WS_TABSTOP |
+                                            WS_VISIBLE
+        CONTROL "Clear by ~scrolling", IDD_CLEARBYSCROLL, 119, 10, 84, 10,
+                                            WC_BUTTON, BS_AUTOCHECKBOX |
+                                            WS_TABSTOP | WS_VISIBLE
+    END
+END

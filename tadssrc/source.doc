@@ -1,0 +1,40 @@
+--== The Canonical Source for TADS/2 ==--
+
+Here it is. Just what you've been waiting for: the source code to
+TADS/2.
+
+It's not pretty. In fact, it goes somewhere beyond ugly to
+hide-the-children-flee-in-terror-hideousness. For one thing, the
+organization of the files is rather...creative. For another thing,
+I hacked this port together using Andrew Plotkin's MaxTADS display
+code (for the Macintosh), my small knowledge of OS/2 GUI programming,
+and EMX GCC. Frankenstein's monster had a less-checkered creation.
+You could probably get this working under a nice IDE compiler, but I
+haven't tried. Good luck; let me know if you try and are successful.
+
+Theoretically, if you have EMX GCC, you can unzip the folder into its
+own directory (make sure to keep the htads and ctads folders as-is),
+then run make using the included makefile, and all will come up roses.
+I wouldn't bet heavily on it.
+
+Here's how things are organized. The htads folder holds all the
+base TADS .h files. The ctads folder contains the base TADS .c files.
+All the files in the root directory of the archive are of my own
+creation. My files work as a sort of wrapper: they fool the base TADS
+code into thinking that it's running in an uncomplicated text
+window. My files implement Andrew's screen code, the OS/2-native stuff,
+binding files into executables, accessing the clipboard, etc. ad
+nauseum, to add a little Latin.
+
+If you do decide to do anything with this code, feel free to drop me a
+line. I don't promise to remember anything about this code, or about
+OS/2 programming in general, but I'll be happy to chat with you. I
+would like to know if you use this code in another project, or if you
+decide to update TADS/2.
+
+That's it. Enjoy.
+
+--Stephen Granade
+sgranade@phy.duke.edu
+26 May 1998
+

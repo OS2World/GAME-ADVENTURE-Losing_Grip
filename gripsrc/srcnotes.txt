@@ -1,0 +1,24 @@
+I am providing the code to Losing Your Grip in the hopes that it might
+be useful to those who are writing TADS games. This is not the neatest
+code in the world. This is a huge, sprawling game; the code mirrors
+the game structure.
+
+You may take this code, modify it, and use it in your own projects
+as you see fit, so long as you do not a) create a new version of Losing
+Your Grip itself and distribute it, or b) distribute a version of Losing
+Your Grip which does not have my name on it.
+
+As a matter of courtesy, if you do use my code, I ask that you e-mail
+me at sgranade@phy.duke.edu and let me know. If you want to credit me
+somewhere within your own game, so much the better.
+
+I have left the game registration code as-is. I'm not taking
+registrations any more, so there's no sense in hiding it. Its encryption
+method is far from top-secret. I offer it here for historical purposes.
+If you're compiling the game yourself but want the hints automatically
+enabled, you can modify the gameinit function in gripstd.t to do
+so. Take the part that reads "if (kprime == k && ..." and replace
+what's inside the parentheses with the word "true".
+
+                              -- Stephen Granade
+                                 30 November 2001

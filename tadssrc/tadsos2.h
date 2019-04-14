@@ -1,0 +1,121 @@
+/*
+** tadsos2.h -- #defines &c.
+*/
+
+// Menu defines
+#define TADS2 1
+#define POPUPMENU 51
+
+#define IDM_FILEMENU 100
+#define IDM_LOAD 101
+#define IDM_SAVE 102
+#define IDM_RESTORE 103
+#define IDM_BIND 104
+#define IDM_UNBIND 105
+#define IDM_RG1 106
+#define IDM_RG2 107
+#define IDM_RG3 108
+#define IDM_RG4 109
+#define IDM_RG5 110
+#define IDM_RG6 111
+#define IDM_RG7 112
+#define IDM_RG8 113
+#define IDM_RG9 114
+#define IDM_RG10 115
+#define IDM_RGSEP 116
+#define IDM_QUIT 117
+
+#define IDM_EDITMENU 200
+#define IDM_UNDO 201
+#define IDM_CUT 202
+#define IDM_COPY 203
+#define IDM_PASTE 204
+#define IDM_FIND 205
+#define IDM_FINDAGAIN 206
+
+#define IDM_OPTIONMENU 300
+#define IDM_STORY_WINDOW 301
+#define IDM_INTERPRETER 302
+#define IDM_PROGRAM 303
+#define IDM_SET_FONT 304
+#define IDM_SET_MAIN_FONT 305
+#define IDM_SET_STATUS_FONT 306
+#define IDM_SET_COLORS 307
+#define IDM_SEPARATED_STATUS 308
+
+#define IDM_MACROMENU 400
+#define IDM_DEFINE_MACRO 401
+#define IDM_NO_MACROS 402
+#define IDM_MACRO1 403
+#define IDM_MACRO2 404
+#define IDM_MACRO3 405
+#define IDM_MACRO4 406
+#define IDM_MACRO5 407
+#define IDM_MACRO6 408
+#define IDM_MACRO7 409
+#define IDM_MACRO8 410
+#define IDM_MACRO9 411
+#define IDM_MACRO10 412
+#define IDM_MACRO11 413
+#define IDM_MACRO12 414
+
+#define IDM_HELPMENU 500
+#define IDM_ABOUT 501
+
+// Window IDs
+#define ID_MESSAGEBOX	5
+#define ID_MBBACK1		6
+#define ID_MBBACK2		7
+#define ID_VSCROLL		10
+#define ID_TEXT			15
+#define ID_STATUSFRAME	20
+#define ID_STATUS		21
+#define ID_PREFSNOTEBOOK	30
+
+// Dialog IDs
+#define DLG_FIND 300
+#define IDD_FIND_TEXT 301
+#define IDD_CAREABOUTCASE 302
+#define IDD_SEARCHBACKWARDS 303
+
+#define DLG_ABOUT 310
+#define IDD_MLE 311
+
+#define DLG_OPTIONS 320
+#define IDD_F1ISMACRO 321
+#define IDD_F10ISMACRO 322
+#define IDD_STICKYPATHS 323
+#define IDD_STICKYMACROS 324
+#define IDD_CLOSEONEND 325
+
+#define DLG_STORYWINDOW 330
+#define IDD_LRMARGINS 331
+#define IDD_TBMARGINS 332
+#define IDD_JUSTIFYTEXT 333
+#define IDD_DOUBLESPACE 334
+#define IDD_BOLDINPUT 335
+
+#define DLG_INTERPRETER 340
+#define IDD_HISTORYLENGTH 341
+#define IDD_BUFFERSIZE 342
+#define IDD_BUFFERSLACK 343
+#define IDD_PAGING 344
+#define IDD_CLEARBYSCROLL 345
+
+// Timer IDs
+#define ID_MBTIMER 1
+#define ID_CURSORTIMER 2
+
+#define SEPARATOR_WIDTH    5L
+
+// Personal commands
+#define CMD_STARTTADS	(WM_USER + 1)
+#define CMD_SHOWERROR	(WM_USER + 2)
+#define CMD_CREATENOTEBOOK	(WM_USER + 3)
+
+/* Undocumented constants for WinDrawBorder */
+#define DB_RAISED		0x0400
+#define DB_DEPRESSED	0x0800
+
+/* Minimum size of the window */
+#define MINIMUM_WIDTH	170
